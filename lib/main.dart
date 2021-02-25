@@ -43,8 +43,8 @@ class produtcDetails extends StatefulWidget {
 class _produtcDetailsState extends State<produtcDetails> {
   TextEditingController ProductNameController = TextEditingController();
   TextEditingController ProductImageController = TextEditingController();
-  TextEditingController ProductPriceController = TextEditingController();
-  TextEditingController ProductIDController = TextEditingController();
+  // TextEditingController ProductPriceController = TextEditingController();
+  // TextEditingController ProductIDController = TextEditingController();
 
   //final Ref = Firestore.instance.collection("ProductsDetails");
   final Ref = Firestore.instance.collection("ProductsDetails");
@@ -52,16 +52,16 @@ class _produtcDetailsState extends State<produtcDetails> {
   addProduct(){
     productToAdd = {
       "ProductName": ProductNameController.text,
-      "ProductImage": ProductImageController.text,
-      "productPrice":ProductPriceController.text,
-      "productID":ProductIDController.text,
+      "ProductUrl": ProductImageController.text,
+      // "productPrice":ProductPriceController.text,
+      // "productID":ProductIDController.text,
     };
     Ref.add(productToAdd).whenComplete(() {
       Navigator.pop(context);
       ProductImageController.text = "";
       ProductNameController.text = "";
-      ProductPriceController.text = "";
-      ProductIDController.text = "";
+      // ProductPriceController.text = "";
+      // ProductIDController.text = "";
 
       print("Added to the DataBase");
     });
@@ -189,7 +189,7 @@ class _produtcDetailsState extends State<produtcDetails> {
                                                   color: Colors.blueAccent,
                                                   child: FlatButton(
                                                     onPressed: (){
-                                                      updateProduct();
+                                                      // updateProduct();
                                                     },
                                                     child: Text("Update"),
                                                   ),
@@ -208,6 +208,7 @@ class _produtcDetailsState extends State<produtcDetails> {
                                     width: 100,height: 100,),
                                   SizedBox(width: 10,),
                                   Text(snapshot.data.documents[index].data["ProductName"]),
+                                  // Text(snapshot.data.documents[index].data["\$ProductPrice"]),
                                   InkWell(onTap: (){
                                     snapshot.data.documents[index].reference.delete().whenComplete(() => Navigator.pop);
                                   },
